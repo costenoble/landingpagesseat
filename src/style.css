@@ -218,19 +218,6 @@
 }
 
 /* ===== Carousel ===== */
-.prototype-blur {
-  filter: blur(3.5px);
-  transform: scale(1.015);
-  transition: filter 0.4s ease;
-  border-radius: 1rem;
-  overflow: hidden;
-  user-select: none;
-}
-
-.prototype-blur:hover {
-  filter: blur(2px);
-}
-
 .carousel-dot {
   width: 8px;
   height: 8px;
