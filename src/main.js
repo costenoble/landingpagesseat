@@ -170,4 +170,58 @@ window.addEventListener('load', () => {
   document.body.style.opacity = '1'
 })
 
+// ===== Carousel =====
+const initCarousel = () => {
+  const track = document.getElementById('carousel-track')
+  const dots = document.querySelectorAll('.carousel-dot')
+  const prevBtn = document.getElementById('carousel-prev')
+  const nextBtn = document.getElementById('carousel-next')
+  if (!track || !prevBtn || !nextBtn) return
+
+  const slides = track.querySelectorAll('.carousel-slide')
+  const total = slides.length
+  let current = 0
+  let autoTimer = null
+
+  const goTo = (index) => {
+    current = (index + total) % total
+    track.style.transform = `translateX(-${current * 100}%)`
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === current)
+    })
+  }
+
+  const startAuto = () => {
+    autoTimer = setInterval(() => goTo(current + 1), 4500)
+  }
+
+  const stopAuto = () => {
+    clearInterval(autoTimer)
+  }
+
+  prevBtn.addEventListener('click', () => { stopAuto(); goTo(current - 1); startAuto() })
+  nextBtn.addEventListener('click', () => { stopAuto(); goTo(current + 1); startAuto() })
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      stopAuto()
+      goTo(parseInt(dot.dataset.index))
+      startAuto()
+    })
+  })
+
+  // Touch / swipe support
+  let startX = 0
+  track.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX }, { passive: true })
+  track.addEventListener('touchend', (e) => {
+    const diff = startX - e.changedTouches[0].clientX
+    if (Math.abs(diff) > 40) { stopAuto(); goTo(diff > 0 ? current + 1 : current - 1); startAuto() }
+  }, { passive: true })
+
+  goTo(0)
+  startAuto()
+}
+
+initCarousel()
+
 console.log('SSEAT Landing Page loaded successfully')
