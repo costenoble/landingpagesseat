@@ -511,13 +511,22 @@
                 <h2 class="text-3xl md:text-5xl font-semibold mt-4 mb-6 tracking-tight">
                     Un premier regard sur le prototype
                 </h2>
-                <p class="text-xl text-dark/60 max-w-2xl mx-auto">
-                    Des extraits de l'interface, volontairement voilés — pour illustrer la direction prise sans dévoiler l'ensemble.
-                </p>
             </div>
 
-            <!-- Carousel -->
-            <div class="relative max-w-4xl mx-auto reveal-scale">
+            <!-- Grid : carrousel + texte -->
+            <div class="grid md:grid-cols-3 gap-12 items-center">
+
+            <!-- Texte (gauche sur desktop) -->
+            <div class="reveal-left order-2 md:order-1">
+                <div class="border-l-4 border-peach-300 pl-6">
+                    <p class="text-xl md:text-2xl font-medium text-dark leading-relaxed">
+                        SSEAT constitue une couche d'architecture dédiée à la sécurisation et à la structuration des flux transactionnels.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Carousel (droite sur desktop) -->
+            <div class="md:col-span-2 relative reveal-right order-1 md:order-2">
                 <div class="carousel-container overflow-hidden rounded-3xl">
                     <div id="carousel-track" class="flex" style="transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);">
 
@@ -611,7 +620,9 @@
                 <p class="text-center text-sm text-dark/40 mt-5 italic">
                     Interface présentée à titre illustratif — accès complet sur demande
                 </p>
-            </div>
+            </div><!-- fin carousel col -->
+
+            </div><!-- fin grid -->
         </div>
     </section>
 
